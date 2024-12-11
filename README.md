@@ -1,6 +1,6 @@
 # Mini Logbook Application
 
-This project implements a simple, single-screen application for logging and managing blood glucose (BG) values. Built using **The Composable Architecture (TCA)**, the app adheres to a modular and testable structure while maintaining clarity and scalability.
+This project implements a simple, single-screen application for logging and managing blood glucose (BG) values. Built using **The Composable Architecture (TCA)**, the app adheres to a modular and testable structure while maintaining clarity and scalability. Additionally, **SwiftGen** is used to manage resources such as strings, images, and colors efficiently.
 
 ---
 
@@ -25,7 +25,7 @@ This project implements a simple, single-screen application for logging and mana
 
 ## Architecture
 
-This app leverages **The Composable Architecture (TCA)** for robust state management. The architecture includes:
+This app leverages **The Composable Architecture (TCA)** for robust state management and **SwiftGen** for managing static resources. The architecture includes:
 
 1. **State**: Manages the application’s state, including:
    - Current BG input.
@@ -51,9 +51,17 @@ This app leverages **The Composable Architecture (TCA)** for robust state manage
 
 ---
 
-## Code Highlights
+## Prerequisites
 
-### Unit Conversion
-Uses a conversion factor of **1 mmol/L = 18.0182 mg/dL**:
-```swift
-let conversionFactor = 18.0182
+### Install SwiftGen
+
+SwiftGen is used to generate type-safe access to resources like strings, images, and colors.
+
+1. Install SwiftGen via Homebrew:
+   ```bash
+   brew install swiftgen
+
+2. Install Swiftlint via Homebrew:
+   ```bash
+   brew install swiftlint
+

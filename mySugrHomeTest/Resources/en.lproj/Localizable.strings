@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  mySugrHomeTest
+
+  Created by Serhan Khan on 11/12/2024.
+  
+*/
+
+"ok" = "Ok";
+"welcome" = "Welcome to Logbook Application";

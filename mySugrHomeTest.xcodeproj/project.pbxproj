@@ -6,8 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		540E4AA62D0A071E005509F1 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 540E4AA52D0A0712005509F1 /* .swiftlint.yml */; };
+		54110AED2D09FD6800767576 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 54110AEC2D09FD5D00767576 /* swiftgen.yml */; };
+		54110B722D0A037F00767576 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 54110B712D0A037F00767576 /* ComposableArchitecture */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		540E4AA52D0A0712005509F1 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySugrHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54110AEC2D09FD5D00767576 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54110B722D0A037F00767576 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,6 +41,8 @@
 		54110A742D09EB6B00767576 = {
 			isa = PBXGroup;
 			children = (
+				540E4AA52D0A0712005509F1 /* .swiftlint.yml */,
+				54110AEC2D09FD5D00767576 /* swiftgen.yml */,
 				54110A7F2D09EB6B00767576 /* mySugrHomeTest */,
 				54110A7E2D09EB6B00767576 /* Products */,
 			);
@@ -55,6 +66,8 @@
 				54110A792D09EB6B00767576 /* Sources */,
 				54110A7A2D09EB6B00767576 /* Frameworks */,
 				54110A7B2D09EB6B00767576 /* Resources */,
+				54110B082D09FE0F00767576 /* swiftgen */,
+				540E4A462D0A06FE005509F1 /* swiftlint */,
 			);
 			buildRules = (
 			);
@@ -65,6 +78,7 @@
 			);
 			name = mySugrHomeTest;
 			packageProductDependencies = (
+				54110B712D0A037F00767576 /* ComposableArchitecture */,
 			);
 			productName = mySugrHomeTest;
 			productReference = 54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */;
@@ -94,6 +108,9 @@
 			);
 			mainGroup = 54110A742D09EB6B00767576;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 54110A7E2D09EB6B00767576 /* Products */;
 			projectDirPath = "";
@@ -109,10 +126,51 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540E4AA62D0A071E005509F1 /* .swiftlint.yml in Resources */,
+				54110AED2D09FD6800767576 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		540E4A462D0A06FE005509F1 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		54110B082D09FE0F00767576 /* swiftgen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftgen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=/opt/homebrew/bin:$PATH\n\nswiftgen config lint\nswiftgen config run\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54110A792D09EB6B00767576 /* Sources */ = {
@@ -254,14 +312,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"mySugrHomeTest/Preview Content\"";
 				DEVELOPMENT_TEAM = URW7UZ7N64;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = mySugr;
+				INFOPLIST_KEY_CFBundleDisplayName = LogBook;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -286,14 +344,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"mySugrHomeTest/Preview Content\"";
 				DEVELOPMENT_TEAM = URW7UZ7N64;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = mySugr;
+				INFOPLIST_KEY_CFBundleDisplayName = LogBook;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -330,6 +388,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		54110B712D0A037F00767576 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 54110A752D09EB6B00767576 /* Project object */;
 }
