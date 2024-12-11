@@ -1,0 +1,22 @@
+input_dir: mySugrHomeTest/Resources
+output_dir: mySugrHomeTest/Generated
+strings:
+  inputs: en.lproj/Localizable.strings
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift5
+      output: Strings.swift
+xcassets:
+  inputs:
+    - Images.xcassets
+    - Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: Assets.swift
+fonts:
+  inputs:
+    - Fonts
+  outputs:
+    - templateName: swift5
+      output: Fonts.swift
+
