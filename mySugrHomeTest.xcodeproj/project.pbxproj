@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54110AED2D09FD6800767576 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 54110AEC2D09FD5D00767576 /* swiftgen.yml */; };
+		54110B722D0A037F00767576 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 54110B712D0A037F00767576 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54110B722D0A037F00767576 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +74,7 @@
 			);
 			name = mySugrHomeTest;
 			packageProductDependencies = (
+				54110B712D0A037F00767576 /* ComposableArchitecture */,
 			);
 			productName = mySugrHomeTest;
 			productReference = 54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */;
@@ -101,6 +104,9 @@
 			);
 			mainGroup = 54110A742D09EB6B00767576;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 54110A7E2D09EB6B00767576 /* Products */;
 			projectDirPath = "";
@@ -359,6 +365,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		54110B712D0A037F00767576 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 54110A752D09EB6B00767576 /* Project object */;
 }
