@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct mySugrHomeTestApp: App {
+    let store = Store(initialState: AppFeature.State()) {
+        AppFeature()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView(store: store) // Instantiate the AppView from the store of AppFeature
         }
     }
 }
