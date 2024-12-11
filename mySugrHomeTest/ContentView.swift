@@ -14,8 +14,11 @@ struct ContentView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100, height: 100)
+            Text(L10n.welcome)
+                .font(.custom(FontFamily.SFUIDisplay.medium.name, size: 20))
+                
             Spacer()
-            Text(L10n.ok)
+            
         }
         .padding()
     }

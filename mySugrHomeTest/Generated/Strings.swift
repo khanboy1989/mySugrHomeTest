@@ -15,6 +15,8 @@ internal enum L10n {
   /// 
   ///   Created by Serhan Khan on 11/12/2024.
   internal static let ok = L10n.tr("Localizable", "ok", fallback: "Ok")
+  /// Welcome to Logbook Application
+  internal static let welcome = L10n.tr("Localizable", "welcome", fallback: "Welcome to Logbook Application")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
