@@ -10,12 +10,21 @@ import ComposableArchitecture
 
 struct MyLogsView: View {
     let store: StoreOf<MyLogsFeature>
-    
     var body: some View {
-        VStack {
-            Text("Welcome to my logs view ")
-        }.onAppear {
-            store.send(.onAppear)
+        // Available within iOS 16 and onwards (NavigationStack)
+        NavigationStack {
+            VStack {
+                Asset.Images.logo.swiftUIImage
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                Text(L10n.welcome)
+                    .font(.custom(FontFamily.SFUIDisplay.medium.name, size: 16))
+                
+                Spacer()
+            }.onAppear {
+                store.send(.onAppear)
+            }
         }
     }
 }
