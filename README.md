@@ -60,3 +60,8 @@ SwiftGen is used to generate type-safe access to resources like strings, images,
 1. Install SwiftGen via Homebrew:
    ```bash
    brew install swiftgen
+
+2. Install Swiftlint via Homebrew:
+   ```bash
+   brew install swiftlint
+
