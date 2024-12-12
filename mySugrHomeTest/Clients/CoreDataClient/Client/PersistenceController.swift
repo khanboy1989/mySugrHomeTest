@@ -5,13 +5,6 @@
 //  Created by Serhan Khan on 11/12/2024.
 //
 
-//
-//  PersistenceController.swift
-//  mySugrHomeTest
-//
-//  Created by Serhan Khan on 11/12/2024.
-//
-
 import CoreData
 import Foundation
 
