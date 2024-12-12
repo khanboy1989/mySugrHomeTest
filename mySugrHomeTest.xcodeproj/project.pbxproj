@@ -10,12 +10,15 @@
 		540E4AA62D0A071E005509F1 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 540E4AA52D0A0712005509F1 /* .swiftlint.yml */; };
 		54110AED2D09FD6800767576 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 54110AEC2D09FD5D00767576 /* swiftgen.yml */; };
 		54110B722D0A037F00767576 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 54110B712D0A037F00767576 /* ComposableArchitecture */; };
+		54FE484C2D0A13BA002FF80C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54FE484B2D0A13BA002FF80C /* CoreData.framework */; };
+		54FE48582D0A198D002FF80C /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 54FE48572D0A198D002FF80C /* SwiftyBeaver */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		540E4AA52D0A0712005509F1 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySugrHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54110AEC2D09FD5D00767576 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		54FE484B2D0A13BA002FF80C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,6 +35,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				54110B722D0A037F00767576 /* ComposableArchitecture in Frameworks */,
+				54FE484C2D0A13BA002FF80C /* CoreData.framework in Frameworks */,
+				54FE48582D0A198D002FF80C /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,7 @@
 				540E4AA52D0A0712005509F1 /* .swiftlint.yml */,
 				54110AEC2D09FD5D00767576 /* swiftgen.yml */,
 				54110A7F2D09EB6B00767576 /* mySugrHomeTest */,
+				54FE484A2D0A13BA002FF80C /* Frameworks */,
 				54110A7E2D09EB6B00767576 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +60,14 @@
 				54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		54FE484A2D0A13BA002FF80C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				54FE484B2D0A13BA002FF80C /* CoreData.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -79,6 +93,7 @@
 			name = mySugrHomeTest;
 			packageProductDependencies = (
 				54110B712D0A037F00767576 /* ComposableArchitecture */,
+				54FE48572D0A198D002FF80C /* SwiftyBeaver */,
 			);
 			productName = mySugrHomeTest;
 			productReference = 54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */;
@@ -110,6 +125,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				54FE48562D0A198D002FF80C /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 54110A7E2D09EB6B00767576 /* Products */;
@@ -320,7 +336,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -352,7 +368,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -398,6 +414,14 @@
 				minimumVersion = 1.17.0;
 			};
 		};
+		54FE48562D0A198D002FF80C /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -405,6 +429,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 54110B702D0A037F00767576 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		54FE48572D0A198D002FF80C /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54FE48562D0A198D002FF80C /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
