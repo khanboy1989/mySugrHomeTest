@@ -38,9 +38,9 @@ struct AppFeature {
     
     var body: some ReducerOf<Self> {
         /*
-         Why Scope is used for?
-        It keeps the logic for MyLogsFeature isolated, making it reusable and independently testable.
-        The parent feature (AppFeature) does not need to know the internal details of MyLogsFeature.
+        Why Scope is used for?
+         It keeps the logic for MyLogsFeature isolated, making it reusable and independently testable.
+         The parent feature (AppFeature) does not need to know the internal details of MyLogsFeature.
          */
         Scope(state: \.myLogs, action: \.myLogs) {
             MyLogsFeature()

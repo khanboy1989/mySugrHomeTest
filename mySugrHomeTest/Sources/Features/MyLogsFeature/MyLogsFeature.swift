@@ -12,11 +12,13 @@ struct MyLogsFeature {
     
     @ObservableState
     struct State: Equatable {
-        
+        var availableUnits: [UnitType] = UnitType.allCases
+        var selectedUnit: UnitType = .mmol
     }
     
     enum Action {
-        case onAppear 
+        case onAppear
+        case selectUnit(UnitType)
     }
     
     @Dependency(\.persistenceClient) var persistenceClient
@@ -25,6 +27,9 @@ struct MyLogsFeature {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                return .none
+            case let .selectUnit(unit):
+                state.selectedUnit = unit
                 return .none
             }
         }

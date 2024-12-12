@@ -9,3 +9,6 @@
 "ok" = "Ok";
 "welcome" = "Welcome to Logbook Application";
 "error" = "Error";
+"mmoll" = "mmol/L";
+"mgdl" = "mg/dl";
+"pleaseSelectAnUnit" = "Please select an unit";
