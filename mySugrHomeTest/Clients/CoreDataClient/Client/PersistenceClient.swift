@@ -10,10 +10,15 @@ import ComposableArchitecture
 
 struct PersistenceClient {
     var prepareDatabase: () async throws -> Void
+    var recordLog: (DailyLog) async throws -> Void
+    var fetchDaiLyLog: () async throws -> [DailyLog]
 }
 
 extension PersistenceClient {
-    static let live: PersistenceClient = .init(prepareDatabase: { try await PersistenceController.shared.prepare() })
+    static let live: PersistenceClient = .init(prepareDatabase: { try await PersistenceController.shared.prepare() },
+        recordLog: PersistenceController.shared.saveDailyLog,
+        fetchDaiLyLog: PersistenceController.shared.fetchDailyMeasurements
+    )
 }
 
 // Dependency Key for DI 

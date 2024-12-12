@@ -8,12 +8,17 @@
 import SwiftUI
 import ComposableArchitecture
 
+/*
+ It is not necessary to create the AppFeature and AppView but
+ It has been created to have it ready for future, ie. if we
+ want to have a LoginFeature or SplashFeature we can inject it here easily
+ */
 struct AppView: View {
     @Bindable var store: StoreOf<AppFeature>
     var body: some View {
         Group {
             if store.databaseState == .loading {
-                ProgressView("Preparing database...")
+                ProgressView(L10n.pleaseWait)
                     .onAppear {
                         store.send(.onAppear)
                     }
@@ -28,7 +33,7 @@ struct AppView: View {
         }
         .alert($store.scope(state: \.alert, action: \.alert)) //Alert modifier to display alerts dynamically when state is updated
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.systemBackground))
+        .background(.white)
     }
 }
 

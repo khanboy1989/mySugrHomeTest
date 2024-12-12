@@ -14,17 +14,33 @@
 		54FE48582D0A198D002FF80C /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 54FE48572D0A198D002FF80C /* SwiftyBeaver */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EB547CD32D0B1E9200571F6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 54110A752D09EB6B00767576 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 54110A7C2D09EB6B00767576;
+			remoteInfo = mySugrHomeTest;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		540E4AA52D0A0712005509F1 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySugrHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54110AEC2D09FD5D00767576 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		54FE484B2D0A13BA002FF80C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EB547CCF2D0B1E9200571F6D /* mySugrHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mySugrHomeTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		54110A7F2D09EB6B00767576 /* mySugrHomeTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = mySugrHomeTest;
+			sourceTree = "<group>";
+		};
+		EB547CD02D0B1E9200571F6D /* mySugrHomeTestTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = mySugrHomeTestTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -40,6 +56,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB547CCC2D0B1E9200571F6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -49,6 +72,7 @@
 				540E4AA52D0A0712005509F1 /* .swiftlint.yml */,
 				54110AEC2D09FD5D00767576 /* swiftgen.yml */,
 				54110A7F2D09EB6B00767576 /* mySugrHomeTest */,
+				EB547CD02D0B1E9200571F6D /* mySugrHomeTestTests */,
 				54FE484A2D0A13BA002FF80C /* Frameworks */,
 				54110A7E2D09EB6B00767576 /* Products */,
 			);
@@ -58,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */,
+				EB547CCF2D0B1E9200571F6D /* mySugrHomeTestTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +124,29 @@
 			productReference = 54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EB547CCE2D0B1E9200571F6D /* mySugrHomeTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB547CD72D0B1E9200571F6D /* Build configuration list for PBXNativeTarget "mySugrHomeTestTests" */;
+			buildPhases = (
+				EB547CCB2D0B1E9200571F6D /* Sources */,
+				EB547CCC2D0B1E9200571F6D /* Frameworks */,
+				EB547CCD2D0B1E9200571F6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB547CD42D0B1E9200571F6D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				EB547CD02D0B1E9200571F6D /* mySugrHomeTestTests */,
+			);
+			name = mySugrHomeTestTests;
+			packageProductDependencies = (
+			);
+			productName = mySugrHomeTestTests;
+			productReference = EB547CCF2D0B1E9200571F6D /* mySugrHomeTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -111,6 +159,10 @@
 				TargetAttributes = {
 					54110A7C2D09EB6B00767576 = {
 						CreatedOnToolsVersion = 16.1;
+					};
+					EB547CCE2D0B1E9200571F6D = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 54110A7C2D09EB6B00767576;
 					};
 				};
 			};
@@ -133,6 +185,7 @@
 			projectRoot = "";
 			targets = (
 				54110A7C2D09EB6B00767576 /* mySugrHomeTest */,
+				EB547CCE2D0B1E9200571F6D /* mySugrHomeTestTests */,
 			);
 		};
 /* End PBXProject section */
@@ -144,6 +197,13 @@
 			files = (
 				540E4AA62D0A071E005509F1 /* .swiftlint.yml in Resources */,
 				54110AED2D09FD6800767576 /* swiftgen.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB547CCD2D0B1E9200571F6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +256,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB547CCB2D0B1E9200571F6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB547CD42D0B1E9200571F6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 54110A7C2D09EB6B00767576 /* mySugrHomeTest */;
+			targetProxy = EB547CD32D0B1E9200571F6D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		54110A892D09EB6C00767576 /* Debug */ = {
@@ -326,7 +401,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"mySugrHomeTest/Preview Content\"";
-				DEVELOPMENT_TEAM = URW7UZ7N64;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -336,7 +411,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,6 +419,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = serhan.khan.mySugrHomeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,7 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"mySugrHomeTest/Preview Content\"";
-				DEVELOPMENT_TEAM = URW7UZ7N64;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -368,7 +447,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,9 +455,49 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = serhan.khan.mySugrHomeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB547CD52D0B1E9200571F6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = serhankhan.mySugrHomeTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mySugrHomeTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mySugrHomeTest";
+			};
+			name = Debug;
+		};
+		EB547CD62D0B1E9200571F6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = serhankhan.mySugrHomeTestTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mySugrHomeTest.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/mySugrHomeTest";
 			};
 			name = Release;
 		};
@@ -399,6 +518,15 @@
 			buildConfigurations = (
 				54110A8C2D09EB6C00767576 /* Debug */,
 				54110A8D2D09EB6C00767576 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB547CD72D0B1E9200571F6D /* Build configuration list for PBXNativeTarget "mySugrHomeTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB547CD52D0B1E9200571F6D /* Debug */,
+				EB547CD62D0B1E9200571F6D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
