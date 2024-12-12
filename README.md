@@ -1,6 +1,6 @@
 # Mini Logbook Application
 
-This project implements a simple, single-screen application for logging and managing blood glucose (BG) values. Built using **The Composable Architecture (TCA)**, the app adheres to a modular and testable structure while maintaining clarity and scalability. Additionally, **SwiftGen** is used to manage resources such as strings, images, and colors efficiently.
+This project implements a simple, single-screen application for logging and managing blood glucose (BG) values. Built using **The Composable Architecture (TCA)**, the app adheres to a modular and testable structure while maintaining clarity and scalability. Additionally, **SwiftGen** is used to manage resources such as strings, images, and colors efficiently. **SwiftLint** is used to enforce coding standards and maintain code quality by identifying style violations and potential issues.
 
 ---
 
