@@ -9,7 +9,10 @@ import SwiftUI
 import ComposableArchitecture
 
 struct MyLogsView: View {
-    let store: StoreOf<MyLogsFeature>
+    // Bindable because we have to create binding option
+    // between textfield and binding state
+    @Bindable var store: StoreOf<MyLogsFeature>
+    
     var body: some View {
         // Available within iOS 16 and onwards (NavigationStack)
         NavigationStack {
@@ -21,12 +24,16 @@ struct MyLogsView: View {
                 Text(L10n.welcome)
                     .font(.custom(FontFamily.SFUIDisplay.medium.name, size: 16))
                 Spacer().frame(height: 16)
-                unitSelectionSection // UnitSelectionSection ViewBuilder
+                VStack(spacing: 16) {
+                    unitSelectionSection // UnitSelectionSection ViewBuilder
+                    unitEntryFieldSection // UnitEntryFieldSection for user input
+                }
+                
                 Spacer()
             }.background(.white)
-            .onAppear {
-                store.send(.onAppear)
-            }
+                .onAppear {
+                    store.send(.onAppear)
+                }
         }
     }
     
@@ -46,6 +53,29 @@ struct MyLogsView: View {
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
         }.padding(.leading, 16)
+    }
+    
+    @ViewBuilder
+    private var unitEntryFieldSection: some View {
+        HStack(alignment: .center) {
+            TextField("", text: $store.bgValueText,
+                      prompt: Text(L10n.pleaseEnterABGValue).foregroundStyle(.gray))
+                .padding()
+                .background(Color.white)
+                .cornerRadius(8)
+                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+                )
+                .textFieldStyle(PlainTextFieldStyle())
+                .foregroundColor(Asset.Colors.tangerineOrange.swiftUIColor)
+            Button {
+                store.send(.save)
+            } label: {
+                Text(L10n.save)
+            }.buttonStyle(.borderedProminent)
+        }.padding()
     }
 }
 

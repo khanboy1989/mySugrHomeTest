@@ -12,3 +12,6 @@
 "mmoll" = "mmol/L";
 "mgdl" = "mg/dl";
 "pleaseSelectAnUnit" = "Please select an unit";
+"pleaseEnterABGValue" = "Please enter a blood glucose value";
+"pleaseWait" = "Please wait";
+"save" = "Save";

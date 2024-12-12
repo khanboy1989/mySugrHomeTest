@@ -21,8 +21,14 @@ internal enum L10n {
   /// 
   ///   Created by Serhan Khan on 11/12/2024.
   internal static let ok = L10n.tr("Localizable", "ok", fallback: "Ok")
+  /// Please enter a blood glucose value
+  internal static let pleaseEnterABGValue = L10n.tr("Localizable", "pleaseEnterABGValue", fallback: "Please enter a blood glucose value")
   /// Please select an unit
   internal static let pleaseSelectAnUnit = L10n.tr("Localizable", "pleaseSelectAnUnit", fallback: "Please select an unit")
+  /// Please wait
+  internal static let pleaseWait = L10n.tr("Localizable", "pleaseWait", fallback: "Please wait")
+  /// Save
+  internal static let save = L10n.tr("Localizable", "save", fallback: "Save")
   /// Welcome to Logbook Application
   internal static let welcome = L10n.tr("Localizable", "welcome", fallback: "Welcome to Logbook Application")
 }
