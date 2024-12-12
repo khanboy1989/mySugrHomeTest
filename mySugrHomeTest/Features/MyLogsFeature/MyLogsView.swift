@@ -27,8 +27,20 @@ struct MyLogsView: View {
                 VStack(spacing: 16) {
                     unitSelectionSection // UnitSelectionSection ViewBuilder
                     unitEntryFieldSection // UnitEntryFieldSection for user input
+                        Button {
+                            store.send(.save)
+                        } label: {
+                            Text(L10n.save)
+                                .font(.custom(FontFamily.SFUIDisplay.medium, size: 20))
+                                
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 40)
+                                
+
+                        }.buttonStyle(.borderedProminent)
+                        .padding(.horizontal, 16)
                 }
-                
+ 
                 Spacer()
             }.background(.white)
                 .onAppear {
@@ -57,24 +69,22 @@ struct MyLogsView: View {
     
     @ViewBuilder
     private var unitEntryFieldSection: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 8) {
             TextField("", text: $store.bgValueText,
                       prompt: Text(L10n.pleaseEnterABGValue).foregroundStyle(.gray))
-                .padding()
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.8), lineWidth: 1)
-                )
-                .textFieldStyle(PlainTextFieldStyle())
-                .foregroundColor(Asset.Colors.tangerineOrange.swiftUIColor)
-            Button {
-                store.send(.save)
-            } label: {
-                Text(L10n.save)
-            }.buttonStyle(.borderedProminent)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(8)
+            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray.opacity(0.8), lineWidth: 1)
+            )
+            .textFieldStyle(PlainTextFieldStyle())
+            .foregroundColor(Asset.Colors.tangerineOrange.swiftUIColor)
+            
+            Text(store.selectedUnit.rawValue)
+                .font(.custom(FontFamily.SFUIDisplay.light, size: 16))
         }.padding()
     }
 }
