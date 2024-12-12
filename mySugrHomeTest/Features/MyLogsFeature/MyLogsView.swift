@@ -27,26 +27,46 @@ struct MyLogsView: View {
                 VStack(spacing: 16) {
                     unitSelectionSection // UnitSelectionSection ViewBuilder
                     unitEntryFieldSection // UnitEntryFieldSection for user input
+                    ZStack {
+                        LoadingIndicator()
+                            .opacity(store.isSaving ? 1 : 0)
                         Button {
                             store.send(.save)
                         } label: {
                             Text(L10n.save)
                                 .font(.custom(FontFamily.SFUIDisplay.medium, size: 20))
-                                
                                 .frame(maxWidth: .infinity)
                                 .frame(height: 40)
-                                
-
                         }.buttonStyle(.borderedProminent)
-                        .padding(.horizontal, 16)
+                            .padding(.horizontal, 16)
+                            .disabled(store.saveButtonDisabled)
+                            .opacity(store.isSaving ? 0 : 1)
+                    }
+                    
                 }
- 
-                Spacer()
+                
+                List {
+                    ForEach(store.myLogs, id: \.id) { log in
+                        DailyLogItemView(dailyLog: log, selectedUnit: store.selectedUnit)
+                            .padding(.vertical, 8) // Add vertical padding between cards
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.white) // Card background color
+                                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2) // Card shadow
+                            )
+                            .padding(.horizontal) // Add horizontal spacing for each card
+                            .listRowSeparator(.hidden) // Hide separators for the row
+                            .listRowBackground(Color.clear) // Ensure background is clear for the card effect
+                    }
+                }
+                .listStyle(PlainListStyle()) // Plain style to remove grouped appearance
+                .background(Asset.Colors.backgroundColor.swiftUIColor.ignoresSafeArea()) // Set overall List background
+                
             }.background(.white)
                 .onAppear {
                     store.send(.onAppear)
                 }
-        }
+        }.alert($store.scope(state: \.alert, action: \.alert)) //Alert modifier to display alerts dynamically when state is updated
     }
     
     @ViewBuilder

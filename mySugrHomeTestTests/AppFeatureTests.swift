@@ -10,8 +10,10 @@ import XCTest
 
 @testable import mySugrHomeTest
 
+#warning("Re-check tests")
 final class AppFeatureTests: XCTestCase {
     
+
     func testDatabasePrepSuccess() async {
         let store = await TestStore(initialState: AppFeature.State()) {
             AppFeature()

@@ -10,8 +10,12 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// Changes Saved Successfully
+  internal static let changesSavedSuccessfully = L10n.tr("Localizable", "changesSavedSuccessfully", fallback: "Changes Saved Successfully")
   /// Error
   internal static let error = L10n.tr("Localizable", "error", fallback: "Error")
+  /// Invalid Numeric Number
+  internal static let invalidNumericNumber = L10n.tr("Localizable", "invalidNumericNumber", fallback: "Invalid Numeric Number")
   /// mg/dl
   internal static let mgdl = L10n.tr("Localizable", "mgdl", fallback: "mg/dl")
   /// mmol/L
