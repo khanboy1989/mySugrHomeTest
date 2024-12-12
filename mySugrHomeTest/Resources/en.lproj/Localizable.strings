@@ -15,3 +15,5 @@
 "pleaseEnterABGValue" = "Please enter a blood glucose value";
 "pleaseWait" = "Please wait";
 "save" = "Save";
+"invalidNumericNumber" = "Invalid Numeric Number";
+"changesSavedSuccessfully" = "Changes Saved Successfully";
