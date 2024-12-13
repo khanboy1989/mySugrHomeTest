@@ -19,9 +19,7 @@ struct AppView: View {
         Group {
             if store.databaseState == .loading {
                 ProgressView(L10n.pleaseWait)
-                    .onAppear {
-                        store.send(.onAppear)
-                    }
+                    
             } else if store.databaseState == .ready {
                 MyLogsView(
                     store: store.scope(
@@ -30,6 +28,8 @@ struct AppView: View {
                     )
                 )
             }
+        }.onAppear {
+            store.send(.onAppear)
         }
         .alert($store.scope(state: \.alert, action: \.alert)) //Alert modifier to display alerts dynamically when state is updated
         .frame(maxWidth: .infinity, maxHeight: .infinity)

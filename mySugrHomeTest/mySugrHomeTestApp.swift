@@ -10,12 +10,13 @@ import ComposableArchitecture
 
 @main
 struct mySugrHomeTestApp: App {
-    let store = Store(initialState: AppFeature.State()) {
+    static let store = Store(initialState: AppFeature.State()) {
         AppFeature()
+            ._printChanges()
     }
     var body: some Scene {
         WindowGroup {
-            AppView(store: store) // Instantiate the AppView from the store of AppFeature
+            AppView(store: mySugrHomeTestApp.store) // Instantiate the AppView from the store of AppFeature
         }
     }
 }

@@ -14,18 +14,19 @@ struct DailyLogItemView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text(dailyLog.formattedDate) // Display the date and time
-                    .font(.caption)
-                    .foregroundColor(.gray)
                 Text(formatValue(dailyLog, unit: selectedUnit)) // Display the value
-                    .font(.headline)
+                    .font(.custom(FontFamily.SFUIDisplay.medium, size: 16))
+                    .foregroundStyle(Asset.Colors.tangerineOrange.swiftUIColor)
+                Text(dailyLog.formattedDate) // Display the date and time
+                    .font(.custom(FontFamily.SFUIDisplay.thin, size: 14))
+                    .foregroundColor(Asset.Colors.subtleGray.swiftUIColor)
             }
             
             Spacer() // Push content to the left
             
-            Text(selectedUnit.rawValue) // Display the unit
-                .font(.subheadline)
-                .foregroundColor(.blue)
+            Text(selectedUnit.title) // Display the unit
+                .font(.custom(FontFamily.SFUIDisplay.light, size: 14))
+                .foregroundColor(Asset.Colors.skyBlue.swiftUIColor)
         }
         .padding()
     }
@@ -34,9 +35,9 @@ struct DailyLogItemView: View {
     private func formatValue(_ log: DailyLog, unit: UnitType) -> String {
         switch unit {
         case .mgdl:
-            return "\(Int(log.mgPerL)) mg/dL"
+            return "\(log.mgPerL.formatToString(with: 1)) \(L10n.mgdl)" // One decimal point for mg/dL
         case .mmol:
-            return String(format: "%.1f mmol/L", log.mmolPerL)
+            return "\(log.mmolPerL.formatToString(with: 1)) \(L10n.mmoll)" // One decimal point for mmol/L
         }
     }
 }

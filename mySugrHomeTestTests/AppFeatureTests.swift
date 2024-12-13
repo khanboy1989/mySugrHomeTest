@@ -7,13 +7,9 @@
 
 import ComposableArchitecture
 import XCTest
-
 @testable import mySugrHomeTest
 
-#warning("Re-check tests")
 final class AppFeatureTests: XCTestCase {
-    
-
     func testDatabasePrepSuccess() async {
         let store = await TestStore(initialState: AppFeature.State()) {
             AppFeature()
@@ -21,10 +17,12 @@ final class AppFeatureTests: XCTestCase {
         } withDependencies: {
             $0.persistenceClient.prepareDatabase = { try await Task.sleep(nanoseconds: 1_000_000_000) }
         }
-
-        await store.send(.onAppear)
         
-        await store.receive(\.databaseState, timeout: .nanoseconds(1_000_000_000)) {
+        await store.send(.onAppear) {
+            $0.databaseState = .loading
+        }
+        
+        await store.receive(\.databaseState, timeout: .seconds(2)) {
             $0.databaseState = .ready
         }
     }
@@ -36,9 +34,9 @@ final class AppFeatureTests: XCTestCase {
         } withDependencies: {
             $0.persistenceClient.prepareDatabase = { throw AppError.databaseCorrupted("Could not load database") }
         }
-        
+        // exhaustivity off for handling only database state
+        // alert action is not handled
         store.exhaustivity = .off(showSkippedAssertions: true)
-        
         await store.send(.onAppear) {
             $0.databaseState = .loading
         }

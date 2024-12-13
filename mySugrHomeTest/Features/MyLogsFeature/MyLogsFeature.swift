@@ -16,8 +16,9 @@ struct MyLogsFeature {
         var bgValueText: String = ""
         var saveButtonDisabled: Bool = true
         var isSaving: Bool = false
-        @Presents var alert: AlertState<Action.Alert>?
         var myLogs: [DailyLog] = []
+        var averageBgValue: String = ""
+        @Presents var alert: AlertState<Action.Alert>?
     }
     
     enum Action: BindableAction {
@@ -30,7 +31,8 @@ struct MyLogsFeature {
         case performSaving(mgdl: Double, mmol: Double)
         case savingCompleted
         case fetchMyLogs
-        case didFetchLogs([DailyLog]?)
+        case didFetchLogs([DailyLog])
+        case calculateAverage([DailyLog])
         enum Alert: Equatable {
             case dismiss
         }
@@ -46,7 +48,7 @@ struct MyLogsFeature {
                 return .send(.fetchMyLogs)
             case let .selectUnit(unit):
                 state.selectedUnit = unit
-                return .none
+                return .send(.calculateAverage(state.myLogs))
             case .binding(\.bgValueText):
                 state.saveButtonDisabled = Double(state.bgValueText) ?? 0.0 > 0.0 ? false : true
                 return .none
@@ -102,23 +104,40 @@ struct MyLogsFeature {
                 }
                 return .none
                 
-            case .fetchMyLogs:
+            case .fetchMyLogs: // Fetches the logs from persistenceClient (CoreData)
                 return .run { send in
                     try await send(.didFetchLogs(self.persistenceClient.fetchDaiLyLog()))
                 }
+            case let .didFetchLogs(logs): // Triggers when logs are fetched
+                state.myLogs = logs.sorted { $0.dateAdded > $1.dateAdded } //sort from newest to latest
+                return .send(.calculateAverage(logs))
+            case let .calculateAverage(logs):
+                guard !logs.isEmpty else {
+                    state.averageBgValue = "0 \(state.selectedUnit == .mmol ? L10n.mmoll : L10n.mgdl)"
+                    return .none
+                } // If it is empty do not calculate
                 
-            case let .didFetchLogs(logs):
-                state.myLogs = logs ?? []
+                let average: Double
+                switch state.selectedUnit {
+                case .mgdl:
+                    // Reduce operation used to calculate the sum of mgPerl values entered by the user
+                    average = logs.map(\.mgPerL).reduce(0, +) / Double(logs.count)
+                    state.averageBgValue =           "\(average.formatToString(with: 1)) \(L10n.mgdl)"
+                    
+                case .mmol:
+                    // Reduce operation used to calculate the sum of mmol values entered by the user
+                    average = logs.map(\.mmolPerL).reduce(0, +) / Double(logs.count)
+                    state.averageBgValue = "\(average.formatToString(with: 1)) \(L10n.mmoll)"
+                }
                 return .none
             }
-            
         }.ifLet(\.$alert, action: \.alert)
         /*
          .ifLet elegantly handles optional state, ensuring the app doesn’t crash when alert is nil.
          
          for State-Driven UI: Alerts are controlled entirely by the application state, ensuring consistency with TCA principles.
          
-         It monitors the optional alert property in your AppFeature.State. If the alert is not nil, it triggers the appropriate UI (e.g., displaying an alert).
+         It monitors the optional alert property in your MyLogsFeature.State. If the alert is not nil, it triggers the appropriate UI (e.g., displaying an alert).
          */
     }
 }

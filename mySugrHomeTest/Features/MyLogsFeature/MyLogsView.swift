@@ -23,26 +23,12 @@ struct MyLogsView: View {
                     .frame(width: 100, height: 100)
                 Text(L10n.welcome)
                     .font(.custom(FontFamily.SFUIDisplay.medium.name, size: 16))
+                averageTextView()
                 Spacer().frame(height: 16)
                 VStack(spacing: 16) {
                     unitSelectionSection // UnitSelectionSection ViewBuilder
                     unitEntryFieldSection // UnitEntryFieldSection for user input
-                    ZStack {
-                        LoadingIndicator()
-                            .opacity(store.isSaving ? 1 : 0)
-                        Button {
-                            store.send(.save)
-                        } label: {
-                            Text(L10n.save)
-                                .font(.custom(FontFamily.SFUIDisplay.medium, size: 20))
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 40)
-                        }.buttonStyle(.borderedProminent)
-                            .padding(.horizontal, 16)
-                            .disabled(store.saveButtonDisabled)
-                            .opacity(store.isSaving ? 0 : 1)
-                    }
-                    
+                    saveButtonView()
                 }
                 
                 List {
@@ -92,6 +78,7 @@ struct MyLogsView: View {
         HStack(alignment: .center, spacing: 8) {
             TextField("", text: $store.bgValueText,
                       prompt: Text(L10n.pleaseEnterABGValue).foregroundStyle(.gray))
+            .keyboardType(.numberPad)
             .padding()
             .background(Color.white)
             .cornerRadius(8)
@@ -106,6 +93,37 @@ struct MyLogsView: View {
             Text(store.selectedUnit.rawValue)
                 .font(.custom(FontFamily.SFUIDisplay.light, size: 16))
         }.padding()
+    }
+    
+    func saveButtonView() -> some View {
+        ZStack {
+            LoadingIndicator()
+                .opacity(store.isSaving ? 1 : 0)
+            Button {
+                store.send(.save)
+            } label: {
+                Text(L10n.save)
+                    .font(.custom(FontFamily.SFUIDisplay.medium, size: 20))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+            }.buttonStyle(.borderedProminent)
+                .padding(.horizontal, 16)
+                .disabled(store.saveButtonDisabled)
+                .opacity(store.isSaving ? 0 : 1)
+        }
+    }
+    
+    func averageTextView() -> some View {
+        VStack {
+            Text("\(L10n.yourAverageIs) \(store.averageBgValue)")
+                .font(.custom(FontFamily.SFUIDisplay.medium, size: 16))
+                .foregroundStyle(Asset.Colors.tangerineOrange.swiftUIColor)
+            
+            Divider()
+                .frame(height: 1)
+                .foregroundStyle(Asset.Colors.skyBlue.swiftUIColor)
+        }
+        
     }
 }
 
