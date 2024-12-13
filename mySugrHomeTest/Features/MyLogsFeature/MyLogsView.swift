@@ -78,6 +78,7 @@ struct MyLogsView: View {
         HStack(alignment: .center, spacing: 8) {
             TextField("", text: $store.bgValueText,
                       prompt: Text(L10n.pleaseEnterABGValue).foregroundStyle(.gray))
+            .keyboardType(.numberPad)
             .padding()
             .background(Color.white)
             .cornerRadius(8)
