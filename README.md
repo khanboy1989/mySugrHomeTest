@@ -89,6 +89,22 @@ The app includes built-in support for Core Data:
 
 ---
 
+## Branches
+
+The project follows a **Gitflow branching strategy**:
+
+1. **Main Branch**:
+   - The `main` branch contains stable and production-ready code.
+   - It is up-to-date with the latest tested changes.
+
+2. **Development Branch**:
+   - The `development` branch is the active branch for ongoing feature development.
+   - It is kept in sync with the `main` branch regularly.
+
+Both branches are currently **up-to-date** with the latest code and features.
+
+---
+
 ## Testability
 
 The app includes some unit tests to verify its functionality, with a focus on critical features such as database preparation and state management. However, tests for the `MyLogsFeature` reducer are planned as a **future improvement** to ensure comprehensive coverage. These future tests will include:
