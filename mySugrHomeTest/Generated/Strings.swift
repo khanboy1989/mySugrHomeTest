@@ -35,6 +35,8 @@ internal enum L10n {
   internal static let save = L10n.tr("Localizable", "save", fallback: "Save")
   /// Welcome to Logbook Application
   internal static let welcome = L10n.tr("Localizable", "welcome", fallback: "Welcome to Logbook Application")
+  /// Your average is
+  internal static let yourAverageIs = L10n.tr("Localizable", "yourAverageIs", fallback: "Your average is")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
