@@ -119,4 +119,8 @@ By including these planned tests, the app will achieve full coverage for the `My
 
 ---
 
+## ScreenShots 
+![Screenshot 2024-12-13 at 12 34 05 PM](https://github.com/user-attachments/assets/b83f657a-5ceb-41f8-8595-66e747fca8ad)
+
+
 This README reflects the latest implementation of the Mini Logbook Application, ensuring an accurate and scalable representation of its features and architecture.
