@@ -13,7 +13,7 @@ struct AppFeature {
     @ObservableState
     struct State: Equatable {
         var myLogs = MyLogsFeature.State()
-        var databaseState: DatabaseState = .loading
+        var databaseState: DatabaseState = .idle
         @Presents var alert: AlertState<Action.Alert>?
     }
     
@@ -29,6 +29,7 @@ struct AppFeature {
     }
     
     enum DatabaseState: Equatable {
+        case idle
         case loading
         case ready
         case failed(String)
