@@ -34,7 +34,8 @@ final class AppFeatureTests: XCTestCase {
         } withDependencies: {
             $0.persistenceClient.prepareDatabase = { throw AppError.databaseCorrupted("Could not load database") }
         }
-        
+        // exhaustivity off for handling only database state
+        // alert action is not handled
         store.exhaustivity = .off(showSkippedAssertions: true)
         await store.send(.onAppear) {
             $0.databaseState = .loading
