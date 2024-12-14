@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "239322E2-B63D-4DE2-9117-A268FF0E08D3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:mySugrHomeTest.xcodeproj",
+      "identifier" : "54110A7C2D09EB6B00767576",
+      "name" : "mySugrHomeTest"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:mySugrHomeTest.xcodeproj",
+        "identifier" : "EB547CCE2D0B1E9200571F6D",
+        "name" : "mySugrHomeTestTests"
+      }
+    }
+  ],
+  "version" : 1
+}

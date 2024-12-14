@@ -28,6 +28,7 @@
 		540E4AA52D0A0712005509F1 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		54110A7D2D09EB6B00767576 /* mySugrHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mySugrHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54110AEC2D09FD5D00767576 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		5419DC652D0D9197000BEA08 /* mySugrHomeTest.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = mySugrHomeTest.xctestplan; sourceTree = "<group>"; };
 		54FE484B2D0A13BA002FF80C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EB547CCF2D0B1E9200571F6D /* mySugrHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mySugrHomeTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,6 +84,7 @@
 		54110A742D09EB6B00767576 = {
 			isa = PBXGroup;
 			children = (
+				5419DC652D0D9197000BEA08 /* mySugrHomeTest.xctestplan */,
 				540E4AA52D0A0712005509F1 /* .swiftlint.yml */,
 				54110AEC2D09FD5D00767576 /* swiftgen.yml */,
 				54110A7F2D09EB6B00767576 /* mySugrHomeTest */,
