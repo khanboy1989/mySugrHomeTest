@@ -29,7 +29,7 @@ final class MyLogsFeatureTests: XCTestCase {
         
         // Then: Verify the average value calculation in mg/dL
         await store.receive(\.calculateAverage) {
-            $0.averageBgValue = "12.0 mg/dL" // Average of mg/dL values (12 + 8) / 2
+            $0.averageBgValue = "10.0 mg/dl" // Average of mg/dL values (12 + 8) / 2
         }
     }
 }
