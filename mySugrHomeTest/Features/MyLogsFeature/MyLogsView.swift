@@ -43,10 +43,12 @@ struct MyLogsView: View {
                             .padding(.horizontal) // Add horizontal spacing for each card
                             .listRowSeparator(.hidden) // Hide separators for the row
                             .listRowBackground(Color.clear) // Ensure background is clear for the card effect
+                            
                     }
                 }
                 .listStyle(PlainListStyle()) // Plain style to remove grouped appearance
                 .background(Asset.Colors.backgroundColor.swiftUIColor.ignoresSafeArea()) // Set overall List background
+                .scrollDismissesKeyboard(.interactively) // Dismisses the keyboard when scrolled from bottom to top 
                 
             }.background(.white)
                 .onAppear {

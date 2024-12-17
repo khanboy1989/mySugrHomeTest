@@ -50,7 +50,7 @@ struct MyLogsFeature {
                 state.selectedUnit = unit
                 return .send(.calculateAverage(state.myLogs))
             case .binding(\.bgValueText):
-                state.saveButtonDisabled = Double(state.bgValueText) ?? 0.0 > 0.0 ? false : true
+                state.saveButtonDisabled = !(Double(state.bgValueText) ?? 0.0 > 0.0)
                 return .none
             case .binding(_):
                 return .none
