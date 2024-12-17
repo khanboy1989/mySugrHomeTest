@@ -11,6 +11,20 @@ import XCTest
 
 final class MyLogsFeatureTests: XCTestCase {
     
+    func testInitialStateInitialisation() {
+        // Given: Initial State for MyLogsFeature State
+        let store = TestStore(initialState: MyLogsFeature.State()) {
+            MyLogsFeature()
+        }
+        
+        // When the state is initialised first Assert the initial values
+        XCTAssertEqual(store.state.availableUnits, UnitType.allCases)
+        XCTAssertEqual(store.state.selectedUnit, .mmol)
+        XCTAssertEqual(store.state.averageBgValue, "")
+        XCTAssertTrue(store.state.myLogs.isEmpty)
+        XCTAssertTrue(store.state.saveButtonDisabled)
+    }
+    
     func testUnitSelection() async {
         // Given: Logs with mgPerL and mmolPerL values
         let logs = [
