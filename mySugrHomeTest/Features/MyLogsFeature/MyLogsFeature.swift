@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 @Reducer
 struct MyLogsFeature {
@@ -88,7 +89,7 @@ struct MyLogsFeature {
                 state.bgValueText = ""
                 return .run { send in
                     await send(.showAlert(message: L10n.changesSavedSuccessfully))
-                    await send(.fetchMyLogs)
+//                    await send(.fetchMyLogs)
                 }
             case .alert:
                 return .none
@@ -106,7 +107,10 @@ struct MyLogsFeature {
                 
             case .fetchMyLogs: // Fetches the logs from persistenceClient (CoreData)
                 return .run { send in
-                    try await send(.didFetchLogs(self.persistenceClient.fetchDaiLyLog()))
+                    for try await logs in self.persistenceClient.streamDailyLogs(nil, [NSSortDescriptor(key: "createdAt", ascending: true)]) {
+                        await send(.didFetchLogs(logs))
+                    }
+//                    try await send(.didFetchLogs(self.persistenceClient.fetchDaiLyLog()))
                 }
             case let .didFetchLogs(logs): // Triggers when logs are fetched
                 state.myLogs = logs.sorted { $0.dateAdded > $1.dateAdded } //sort from newest to latest
@@ -122,7 +126,7 @@ struct MyLogsFeature {
                 case .mgdl:
                     // Reduce operation used to calculate the sum of mgPerl values entered by the user
                     average = logs.map(\.mgPerL).reduce(0, +) / Double(logs.count)
-                    state.averageBgValue =           "\(average.formatToString(with: 1)) \(L10n.mgdl)"
+                    state.averageBgValue = "\(average.formatToString(with: 1)) \(L10n.mgdl)"
                     
                 case .mmol:
                     // Reduce operation used to calculate the sum of mmol values entered by the user

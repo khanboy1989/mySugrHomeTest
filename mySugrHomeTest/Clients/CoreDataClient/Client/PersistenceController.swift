@@ -16,21 +16,21 @@ import Foundation
 class PersistenceController {
     static let shared: PersistenceController = .init()
     var persistenceStoreLoaded: Bool = false
-
+    
     // MARK: - Persistent Container Setup
     let container: NSPersistentContainer = {
         // Load the Core Data model
         let objectModel = try! NSManagedObjectModel.managedObjectModel(forResourse: CDConstants.model)
         let container = NSPersistentContainer(name: CDConstants.model, managedObjectModel: objectModel)
-
+        
         // Configure persistent store description
         let description = container.persistentStoreDescriptions.first
         description?.shouldInferMappingModelAutomatically = true
         description?.shouldMigrateStoreAutomatically = true
-
+        
         return container
     }()
-
+    
     // Context for UI-related operations
     var viewContext: NSManagedObjectContext {
         container.viewContext
@@ -48,7 +48,7 @@ extension PersistenceController {
             assertionFailure("Unresolved error \(error)")
         }
     }
-
+    
     /// Prepares the persistent store asynchronously.
     func prepare() async throws {
         if !persistenceStoreLoaded {
@@ -56,7 +56,7 @@ extension PersistenceController {
             persistenceStoreLoaded = true
         }
     }
-
+    
     /// Loads the persistent store, handling errors.
     private func loadPersistenceStore() async throws {
         return try await withCheckedThrowingContinuation { continuation in
@@ -71,7 +71,7 @@ extension PersistenceController {
             }
         }
     }
-
+    
     /// Fetches Core Data objects and materializes only fully initialized ones.
     func materializedObjects(context: NSManagedObjectContext, predicate: NSPredicate) -> [NSManagedObject] {
         context.performAndWait {
@@ -83,7 +83,7 @@ extension PersistenceController {
             return objects
         }
     }
-
+    
     /// Fetches and converts domain objects using a generic fetcher.
     func batchFetchDomainObject<T: NSManagedObject>(
         entityType: T.Type,
@@ -101,7 +101,7 @@ extension PersistenceController {
             context: context
         ).toModel(context: context)
     }
-
+    
     /// Performs a batch fetch for a specific Core Data entity type.
     func batchFetch<T: NSManagedObject>(
         entityType: T.Type,
@@ -125,10 +125,10 @@ extension PersistenceController {
     /// Saves a DailyLog to Core Data.
     func saveDailyLog(_ log: DailyLog) async {
         let context = container.newBackgroundContext()
-        _ = log.toCoreDataObject(in: context) // Convert to Core Data object
-        self.saveContext(context) // Save the context
+        _ = log.toCoreDataObject(in: viewContext) // Convert to Core Data object
+        self.saveContext(viewContext) // Save the context
     }
-
+    
     /// Fetches all saved DailyLog measurements.
     func fetchDailyMeasurements() async throws -> [DailyLog] {
         let context = container.newBackgroundContext()
@@ -136,10 +136,9 @@ extension PersistenceController {
     }
     
     // MARK: - Streaming Fetch Results
-    func dailyLogStream(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor]) -> AsyncThrowingStream<[DailyLog], Error> {
+    func dailyLogStream(predicate: NSPredicate?, sortDescriptors: [NSSortDescriptor]) -> AsyncThrowingStream<[DailyLog], Error> {
         return AsyncThrowingStream { continuation in
             let context = container.newBackgroundContext()
-            
             func fetchAndYield() {
                 context.perform {
                     do {
@@ -147,14 +146,24 @@ extension PersistenceController {
                             entityType: CDMeasurement.self,
                             predicate: predicate,
                             sortDescriptors: sortDescriptors,
-                            context: context)
+                            context: self.viewContext)
                         continuation.yield(results)
                     } catch {
                         continuation.finish(throwing: error)
                     }
                 }
             }
-
+            
+            let observer = NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: viewContext, queue: nil) { _ in
+                fetchAndYield()
+            }
+            
+            fetchAndYield()
+            
+            // Cleanup observer when the stream ends
+            continuation.onTermination = { @Sendable _ in
+                NotificationCenter.default.removeObserver(observer)
+            }
         }
     }
 }
