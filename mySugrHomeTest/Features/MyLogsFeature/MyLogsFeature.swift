@@ -89,7 +89,6 @@ struct MyLogsFeature {
                 state.bgValueText = ""
                 return .run { send in
                     await send(.showAlert(message: L10n.changesSavedSuccessfully))
-//                    await send(.fetchMyLogs)
                 }
             case .alert:
                 return .none
@@ -105,15 +104,14 @@ struct MyLogsFeature {
                 }
                 return .none
                 
-            case .fetchMyLogs: // Fetches the logs from persistenceClient (CoreData)
+            case .fetchMyLogs: // Fetches the logs from persistenceClient (CoreData) by Stream
                 return .run { send in
-                    for try await logs in self.persistenceClient.streamDailyLogs(nil, [NSSortDescriptor(key: "createdAt", ascending: true)]) {
+                    for try await logs in self.persistenceClient.streamDailyLogs(nil, [NSSortDescriptor(key: "createdAt", ascending: false)]) {
                         await send(.didFetchLogs(logs))
                     }
-//                    try await send(.didFetchLogs(self.persistenceClient.fetchDaiLyLog()))
                 }
             case let .didFetchLogs(logs): // Triggers when logs are fetched
-                state.myLogs = logs.sorted { $0.dateAdded > $1.dateAdded } //sort from newest to latest
+                state.myLogs = logs
                 return .send(.calculateAverage(logs))
             case let .calculateAverage(logs):
                 guard !logs.isEmpty else {
