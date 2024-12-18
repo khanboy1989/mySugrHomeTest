@@ -12,12 +12,14 @@ struct PersistenceClient {
     var prepareDatabase: () async throws -> Void
     var recordLog: (DailyLog) async throws -> Void
     var fetchDaiLyLog: () async throws -> [DailyLog]
+    var streamDailyLogs: (_ predicate: NSPredicate?, _ sortDescriptors: [NSSortDescriptor]) -> AsyncThrowingStream<[DailyLog], Error>
 }
 
 extension PersistenceClient {
     static let live: PersistenceClient = .init(prepareDatabase: { try await PersistenceController.shared.prepare() },
         recordLog: PersistenceController.shared.saveDailyLog,
-        fetchDaiLyLog: PersistenceController.shared.fetchDailyMeasurements
+        fetchDaiLyLog: PersistenceController.shared.fetchDailyMeasurements,
+        streamDailyLogs: PersistenceController.shared.dailyLogStream
     )
 }
 
