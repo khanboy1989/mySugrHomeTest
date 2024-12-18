@@ -91,9 +91,9 @@ extension PersistenceController {
         predicate: NSPredicate? = nil,
         sortDescriptors: [NSSortDescriptor]? = nil,
         context: NSManagedObjectContext? = nil
-    ) -> [T.ModelType] where T: ModelConvertable {
+    ) throws -> [T.ModelType] where T: ModelConvertable {
         let context = context ?? container.newBackgroundContext()
-        return batchFetch(
+        return try batchFetch(
             entityType: entityType,
             fetchLimit: fetchLimit,
             predicate: predicate,
@@ -109,13 +109,13 @@ extension PersistenceController {
         predicate: NSPredicate? = nil,
         sortDescriptors: [NSSortDescriptor]? = nil,
         context: NSManagedObjectContext
-    ) -> [T] {
-        context.performAndWait {
+    ) throws -> [T] {
+        return try context.performAndWait {
             let request = NSFetchRequest<T>(entityName: String(describing: entityType))
             request.predicate = predicate
             request.fetchLimit = fetchLimit
             request.sortDescriptors = sortDescriptors
-            return (try? context.fetch(request)) ?? []
+            return (try context.fetch(request))
         }
     }
 }
@@ -132,6 +132,29 @@ extension PersistenceController {
     /// Fetches all saved DailyLog measurements.
     func fetchDailyMeasurements() async throws -> [DailyLog] {
         let context = container.newBackgroundContext()
-        return batchFetchDomainObject(entityType: CDMeasurement.self, context: context)
+        return try batchFetchDomainObject(entityType: CDMeasurement.self, context: context)
+    }
+    
+    // MARK: - Streaming Fetch Results
+    func dailyLogStream(predicate: NSPredicate, sortDescriptors: [NSSortDescriptor]) -> AsyncThrowingStream<[DailyLog], Error> {
+        return AsyncThrowingStream { continuation in
+            let context = container.newBackgroundContext()
+            
+            func fetchAndYield() {
+                context.perform {
+                    do {
+                        let results: [DailyLog] = try self.batchFetchDomainObject(
+                            entityType: CDMeasurement.self,
+                            predicate: predicate,
+                            sortDescriptors: sortDescriptors,
+                            context: context)
+                        continuation.yield(results)
+                    } catch {
+                        continuation.finish(throwing: error)
+                    }
+                }
+            }
+
+        }
     }
 }
